@@ -1,7 +1,8 @@
 //import cecessary elements
-import {useState} from "react";
+
 import { NavLink, Routes, Route } from "react-router-dom";
 import './styles/App.css';
+import './styles/fonts.css'
 
 //IMPORTANT
 //DONT FORGET TO IMPORT OUR CHATBOX COMPONENT WHEN ITS COMPLETE
@@ -19,7 +20,6 @@ function App() {
         <NavLink to="/">Home</NavLink>
         <NavLink to="/">Home</NavLink>
       </nav>
-
       <section>
         <Routes>
           <Route path="/" element={<Chatbox />} />

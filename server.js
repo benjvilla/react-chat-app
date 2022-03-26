@@ -1,6 +1,6 @@
 //import what will be required
+const mongoose = require('mongoose');
 const express = require("express");
-const mongoose = require('mongoose')
 const cors = require("cors");
 //import our Schema
 const MessageSchema = require('./Message.js')
@@ -26,7 +26,7 @@ const app = express();
 db.on("error", console.error.bind(console, "connection error"));
 
 //middleware functions
-app.use(express.static('./build'));
+app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(cors())
 
@@ -48,19 +48,21 @@ app.post('/create', async (req, res) => {
     currentRoom: req.body.currentRoom,
     date: Date()
   })
-
   //saving the new MESSAGE to the Model
-
   await newMessage.save();
   
   //redirect to home page
-
-  res.redirect('/');
+  res.redirect('http://localhost:3000');
   
+});
+
+//Delete functionality
+app.post('/delete/:messageId', async (req, res) => {
+  //grab document id received in params
+  let messageId = req.params.messageId;
+  await Message.deleteOne({ _id: messageId })
+  res.redirect('http://localhost:3000')
 })
-
-
-
 
 app.listen(port, () => {
   console.log('listening on port: ' + port) 

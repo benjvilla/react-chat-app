@@ -1,0 +1,23 @@
+.App {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+#username {
+    width: 10vw;
+    text-align: center;
+}
+#message {
+    min-width: 20vw;
+    max-width: 20vw;
+    text-align: center;
+    word-wrap: break-word;
+}
+#date {
+    width: 10vw;
+    text-align: center;
+}
+#delete {
+    width: 10vw;
+    text-align: center;
+}

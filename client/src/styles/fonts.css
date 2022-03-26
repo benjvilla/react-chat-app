@@ -1,0 +1,12 @@
+@font-face {
+    font-family: 'Optimus';
+    src: local('Optimus'), url(../fonts/OptimusPrincepsSemiBold.ttf) format('truetype');
+}
+body {
+    background-color: rgb(51, 51, 51);
+}
+.App {
+    font-family: 'Optimus';
+    color: rgb(185, 185, 185);
+    background-color: rgb(51, 51, 51);
+}

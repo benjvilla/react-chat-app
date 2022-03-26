@@ -1,7 +1,8 @@
 {
   "name": "react-chat",
   "version": "1.0.0",
-  "description": "",
+  "description": "Ben and Eric's super-awesome chat app!",
+  "proxy": "http://localhost:5000/",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",

@@ -1,20 +1,23 @@
 //import hooks from react
 import { useState, useEffect } from "react";
 
+//import css
+import "../styles/App.css"
+
 //component function
-export default function Chatbox(props) {
+export default function Chatbox() {
   //use state to hold result of fetch
   const [allMessages, setAllMessages] = useState([]);
 
-  useEffect(() => {
+  useEffect(async () => {
     //fetch information from a local API route set up on the server
     fetch("http://localhost:5000/allmessages")
-      .then((res) => {
+    .then((res) => {
         return res.json();
-      })
-      .then((json) => {
+    })
+    .then((json) => {
         setAllMessages(json);
-      });
+    })
   }, []);
 
 
@@ -24,17 +27,24 @@ export default function Chatbox(props) {
                     <thead>
                         <tr>
                             <th>Name</th>
-                            <th>Date</th>
                             <th>Message</th>
+                            <th>Date</th>
+                            <th>Delete</th>
                         </tr>
                     </thead>
                     <tbody>
                         {allMessages.map((message) => {
                             return (
                                 <tr key={message._id}>
-                                    <td>{message.userName}</td>
-                                    <td>{message.date}</td>
-                                    <td>{message.userMessage}</td>
+                                    <td id="username">{message.userName}</td>
+                                    <td id="message">{message.userMessage}</td>
+                                    <td id="date">{message.date}</td>
+                                    <td id="delete">
+                                        {" "}
+                                        <form action={`http://localhost:5000/delete/${message._id}`} method="POST">
+                                            <button>Darksign last message</button>
+                                        </form>
+                                    </td>
                                 </tr>
                             )
                         })}
@@ -42,7 +52,12 @@ export default function Chatbox(props) {
                     <tfoot>
                         <tr>
                             <td>
-                                <form action="/create" method="POST">
+                                <form action="http://localhost:5000/create" method="POST">
+                                    <input 
+                                        type="text"
+                                        name="userName"
+                                        placeholder="State your name, Chosen Undead"
+                                    />
                                     <input 
                                         type="text"
                                         name="userMessage"
