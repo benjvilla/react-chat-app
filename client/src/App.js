@@ -1,35 +1,38 @@
-//import cecessary elements
-
-import { NavLink, Routes, Route } from "react-router-dom";
+//import necessary elements
+import React, { useState, useEffect } from "react";
+import { NavLink, Routes, Route, useParams } from "react-router-dom";
 import './styles/App.css';
-import './styles/fonts.css'
-
-//IMPORTANT
-//DONT FORGET TO IMPORT OUR CHATBOX COMPONENT WHEN ITS COMPLETE
-//IMPORTANT
+import './styles/fonts.css';
+import Praise from './img/praisethesun.gif';
 import Chatbox from "./components/Chatbox";
 
-function App() {
 
+function App() {
   return (
-    <div className="App">
-      <h1>Soapstone Messenger</h1>
-      <nav>
-        <NavLink to="/">Home</NavLink>
-        <NavLink to="/">Home</NavLink>
-        <NavLink to="/">Home</NavLink>
-        <NavLink to="/">Home</NavLink>
-      </nav>
-      <section>
-        <Routes>
-          <Route path="/" element={<Chatbox />} />
-          <Route path="/" element={<Chatbox />} />
-          <Route path="/" element={<Chatbox />} />
-          <Route path="/" element={<Chatbox />} />
-        </Routes>
-      </section>
+    <div id="layout-grid">
+      <div className="App">
+        <h1 id="head">Soapstone Messenger</h1>
+        <div id="main">
+          <div id="left">
+            <nav id= "navbar">
+              <h2>Dungeons</h2>
+                <NavLink id="nav" to="/room1" >Room1</NavLink>
+                <NavLink id="nav" to="/room2" >Room2</NavLink>
+                <NavLink id="nav" to="/room3" >Room3</NavLink>
+                <NavLink id="nav" to="/room4" >Room4</NavLink>
+            </nav>
+            <img id="praise" src={Praise} />
+          </div>
+          <section id="display">
+            <Routes>
+              <Route path="/:currentR" element={<Chatbox />} />
+            </Routes>
+          </section>
+        </div>
+      </div>
     </div>
   );
 }
+
 
 export default App;

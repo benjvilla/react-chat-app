@@ -34,10 +34,26 @@ app.use(cors())
 const Message = mongoose.model("messages", MessageSchema);
 
 //create our API route for the front end to access the MESSAGES in the database 
-app.get("/allmessages", async (req, res) => {
-  let allMessages = await Message.find({});
+app.get("/room1", async (req, res) => {
+  let allMessages = await Message.find({"currentRoom": "room1"});
   res.json(allMessages)
 })
+//create our API route for the front end to access the MESSAGES in the database 
+app.get("/room2", async (req, res) => {
+  let allMessages = await Message.find({"currentRoom": "room2"});
+  res.json(allMessages)
+})
+//create our API route for the front end to access the MESSAGES in the database 
+app.get("/room3", async (req, res) => {
+  let allMessages = await Message.find({"currentRoom": "room3"});
+  res.json(allMessages)
+})
+//create our API route for the front end to access the MESSAGES in the database 
+app.get("/room4", async (req, res) => {
+  let allMessages = await Message.find({"currentRoom": "room4"});
+  res.json(allMessages)
+})
+
 
 //CREATE functionality for inserting a new MESSAGE into our collection
 app.post('/create', async (req, res) => {
@@ -51,8 +67,8 @@ app.post('/create', async (req, res) => {
   //saving the new MESSAGE to the Model
   await newMessage.save();
   
-  //redirect to home page
-  res.redirect('http://localhost:3000');
+  //redirect to current page - *not sure this works
+  res.redirect(`http://localhost:3000/${req.body.currentRoom}`);
   
 });
 
@@ -61,7 +77,7 @@ app.post('/delete/:messageId', async (req, res) => {
   //grab document id received in params
   let messageId = req.params.messageId;
   await Message.deleteOne({ _id: messageId })
-  res.redirect('http://localhost:3000')
+  res.redirect(`http://localhost:3000/${req.body.currentRoom}`)
 })
 
 app.listen(port, () => {
