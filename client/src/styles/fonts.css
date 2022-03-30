@@ -1,10 +1,15 @@
+/*allow our app to use a custom font*/
 @font-face {
+    /*give the font a custom name*/
     font-family: 'Optimus';
+    /*direct the computer to the local directory*/
     src: local('Optimus'), url(../fonts/OptimusPrincepsSemiBold.ttf) format('truetype');
 }
+/*set background color for our webpage*/
 body {
     background-color: rgb(51, 51, 51);
 }
+/*apply the font we imported*/
 .App {
     font-family: 'Optimus';
     color: rgb(185, 185, 185);

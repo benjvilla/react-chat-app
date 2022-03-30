@@ -9,7 +9,7 @@ import "../styles/App.css";
 export default function Chatbox() {
   //use state to hold result of fetch
   const [allMessages, setAllMessages] = useState([]);
-
+  
   //create a function to set the current path to the currentRoom ID
   let { currentR } = useParams();
   function CurrentRoom() {
@@ -20,22 +20,32 @@ export default function Chatbox() {
       </div>
     );
   }
-
-
+  
+  //fetch information from a local API route set up on the server
   function fetcher() {
     fetch(`http://localhost:5000/${currentR}`)
-      .then((res) => {
-        return res.json();
-      })
-      .then((json) => {
-        setAllMessages(json);
-      });
+    .then((res) => {
+      return res.json();
+    })
+    .then((json) => {
+      setAllMessages(json);
+    });
   }
-  //fetch information from a local API route set up on the server
-  useEffect(() => {
-    fetcher();
-  }, [currentR]);
 
+  //invoke a useEffect upon data change
+  useEffect(() => {
+    //call fetch here to show messenger before 10 seconds
+    fetcher();
+    //refresh messages every 10 seconds
+    let interval = setInterval(() => {
+      fetcher();
+    }, 10000)
+
+    return () => {
+      clearInterval(interval)
+    }
+  }, [currentR])
+  
   return (
     <div id="messages">
         <CurrentRoom />
@@ -68,12 +78,7 @@ export default function Chatbox() {
             );
           })}
         </tbody>
-        <tfoot>
-          <tr>
-            <td>
-            </td>
-          </tr>
-        </tfoot>
+          
       </table>
       <div>
         <form id="input" action="http://localhost:5000/create" method="POST">
