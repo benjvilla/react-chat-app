@@ -6,7 +6,7 @@ const cors = require("cors");
 const MessageSchema = require('./Message.js')
 
 //create the initial connection to the database
-mongoose.connect("mongodb://localhost:27017/message", {useNewUrlParser: true}, (err) => {
+mongoose.connect("mongodb://0.0.0.0:27017/message", {useNewUrlParser: true}, (err) => {
   if (!err) {
     console.log('MongoDB Connection Succeeded!')
   } else {

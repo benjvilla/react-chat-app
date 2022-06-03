@@ -1,3 +1,9 @@
+node server.js in root level to start server
+cd into client folder
+npm start
+chat app will open in browser at localhost:3000
+
+
 # React Chat
 
 You will be creating a piece of full stack software: a chat application. 
